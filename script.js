@@ -188,7 +188,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 确认按钮事件  | envent of button
     elements.confirmButton.addEventListener('click', () => {
-        const username = elements.nameInput.value.substring(0, 20);
+        // const username = elements.nameInput.value.substring(0, 20);
+        const username = 'quanquan';
         elements.questionText.innerHTML = i18n.template(
             i18n.translations.questionTemplate, 
             { username: username || '' }
@@ -198,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 给按钮容器添加动画类名 | in anime
         elements.confessionContainer.querySelector('.buttons').classList.add('slide-up-fade-in');
     });
-
+    elements.confirmButton.click();
     let clickCount = 0; // 记录点击 No 的次数 | Record the number of clicks on the No button
 // No 按钮点击事件 | No button click event
     elements.noButton.addEventListener('click', function () {

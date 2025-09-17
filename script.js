@@ -1,6 +1,353 @@
+// 集成所有语言数据的i18n实现
 const i18n = {
     translations: {},
     currentLang: '',
+    
+    // 所有支持的语言列表
+    languages: {
+        "zh-CN": {
+            "file": "zh-CN.json",
+            "label": "🌏 简体中文"
+        },
+        "zh-TW": {
+            "file": "zh-TW.json",
+            "label": "🌏 繁體中文"
+        },
+        "en": {
+            "file": "en.json",
+            "label": "🌎 English"
+        },
+        "ja": {
+            "file": "ja.json",
+            "label": "🌏 日本語"
+        },
+        "ko": {
+            "file": "ko.json",
+            "label": "🌏 한국어"
+        },
+        "de": {
+            "file": "de.json",
+            "label": "🌍 Deutsch"
+        },
+        "fr": {
+            "file": "fr.json",
+            "label": "🌍 Français"
+        },
+        "id": {
+            "file": "id.json",
+            "label": "🌏 Bahasa Indonesia"
+        },
+        "ms": {
+            "file": "ms.json",
+            "label": "🌏 Bahasa Melayu"
+        },
+        "ru": {
+            "file": "ru.json",
+            "label": "🌍 Русский"
+        },
+        "th": {
+            "file": "th.json",
+            "label": "🌏 ภาษาไทย"
+        },
+        "vi": {
+            "file": "vi.json",
+            "label": "🌏 Tiếng Việt"
+        },
+        "ar": {
+            "file": "ar.json",
+            "label": "🌍 العربية"
+        }
+    },
+    
+    // 所有语言的翻译数据
+    allTranslations: {
+        "zh-CN": {
+            "pageTitle": "可以成为我的恋人吗？",
+            "greeting": "你希望我怎么称呼你呢？(*>﹏<*)",
+            "subGreeting": "不想告诉我的话也可以留空哦",
+            "usernamePlaceholder": "请输入你的名字",
+            "confirmButton": "是这个名字呢",
+            "xiaohongshuLinkText": "小红书(*^▽^*)",
+            "douyinLinkText": "抖音( •̀ ω •́ )",
+            "repoLinkText": "源代码仓库ˋ( ° ▽、° )",
+            "freeNotice": "ฅ•ω•ฅ 这是完全免费的项目哦！如果你花钱了，快去找坏蛋退款！",
+            "questionTemplate": "可以成为我的恋人吗？{username}",
+            "loveMessage": "!!!喜欢你!! ( >᎑<)♡︎ᐝ {username}  ♡︎ᐝ(>᎑< )",
+            "yesButton": "可以",
+            "noButton": "不要",
+            "noTexts": [
+              "？你认真的吗…",
+              "要不再想想？",
+              "不许选这个！",
+              "我会很伤心…",
+              "不行:("
+            ]
+        },
+        "zh-TW": {
+            "pageTitle": "可以成為我的戀人嗎？(๑>ᴗ<๑)",
+            "greeting": "希望我怎麼稱呼你呢？(*´▽`*)",
+            "subGreeting": "保密也可以哦～♪(´ε｀ )",
+            "usernamePlaceholder": "輸入你的可愛暱稱",
+            "confirmButton": "是這個名字哦",
+            "xiaohongshuLinkText": "小紅書(≧◡≦)",
+            "douyinLinkText": "抖音(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "原始碼倉庫(ﾉ≧∀≦)ﾉ",
+            "freeNotice": "ฅ•ω•ฅ 完全免費專案！付費請立刻退款！(╯°Д°)╯",
+            "questionTemplate": "{username}，願意永遠和我在一起嗎？(๑>ᴗ<๑)♡",
+            "loveMessage": "超級喜歡你！♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}，你偷走我的心了啦！(♡˙︶˙♡)",
+            "yesButton": "願意！(๑>ω<๑)",
+            "noButton": "不要…(；▽；)",
+            "noTexts": [
+              "認真的嗎？(⊙ω⊙;)",
+              "再考慮一下嘛！(´；ω；`)",
+              "不許選這個！(ﾉ`Д´)ﾉ",
+              "我會哭哦…(T^T)",
+              "最後確認？(눈‸눈)"
+            ]
+        },
+        "en": {
+            "pageTitle": "Will you be my sweetheart? (✧ω✧)",
+            "greeting": "What cute name should I call you? (´• ω •`) ♡",
+            "subGreeting": "Secret is okay~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(KEEP SPACE)",
+            "usernamePlaceholder": "Type your sweet name here...",
+            "confirmButton": "Confirm ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "TikTok ver.Chinese Mainland Douyin(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Source Code (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ FREE PROJECT! If you paid, go get refund! (╯°□°）╯",
+            "questionTemplate": "{username}? Will you be my forever love? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "LOVE EXPLOSION!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! You stole my heart! (灬º‿º灬)♡",
+            "yesButton": "Yes! (✧∀✧)",
+            "noButton": "No... (；へ：)",
+            "noTexts": [
+              "Wait, really? (⊙_⊙;)",
+              "My heart is cracking... (´；д；`)",
+              "Please think again! (ﾉ`Д´)ﾉ",
+              "I'll cry a river... (T^T)",
+              "Final answer? (눈‸눈)"
+            ]
+        },
+        "ja": {
+            "pageTitle": "私の恋人になってくれる？(๑>ᴗ<๑)",
+            "greeting": "あなたの呼び名は何がいい？(*´▽`*)",
+            "subGreeting": "秘密でも大丈夫だよ～♪(´ε｀ )(空白OK)",
+            "usernamePlaceholder": "可愛い名前を教えてね",
+            "confirmButton": "決定だよ♡(๑>◡<๑)",
+            "xiaohongshuLinkText": "REDnote(≧◡≦)",
+            "douyinLinkText": "中国版のティックトック(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "ソースコード(ﾉ≧∀≦)ﾉ",
+            "freeNotice": "ฅ•ω•ฅ 完全無料だよ！お金払ったらすぐ返金して！(╯°Д°)╯",
+            "questionTemplate": "{username}、ずっと一緒にいてくれる？(๑>ᴗ<๑)♡",
+            "loveMessage": "大好きだよ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}、私のハート盗んで行ったね！(♡˙︶˙♡)",
+            "yesButton": "はい！(๑>ω<๑)",
+            "noButton": "いやだよ…(；▽；)",
+            "noTexts": [
+              "えっ、本当に？(⊙ω⊙;)",
+              "もうちょっと考えて！(´；ω；`)",
+              "そっちは選べないよ！(ﾉ`Д´)ﾉ",
+              "泣いちゃうよ…(T^T)",
+              "最後の答え？(눈‸눈)"
+            ]
+        },
+        "ko": {
+            "pageTitle": "제 연인이 되어 주실래요? (๑•. •๑)",
+            "greeting": "당신을 어떤 귀여운 이름으로 불러야 할까요? (*>﹏<*)",
+            "subGreeting": "만약 말하고 싶지 않다면 비워두셔도 돼요♪",
+            "usernamePlaceholder": "당신의 귀여운 이름을 입력해 주세요",
+            "confirmButton": "이 이름이 맞아요(✿◠‿◠)",
+            "xiaohongshuLinkText": "REDnote(๑•. •๑)",
+            "douyinLinkText": "TikTok China(๑•. •๑)",
+            "repoLinkText": "소스 코드 저장소(๑•. •๑)",
+            "freeNotice": "ฅ•ω•ฅ 무료 프로젝트예요! 돈 내셨다면 바로 환불 요청하세요!",
+            "questionTemplate": "{username}님, 제 연인이 되어 주실래요? (๑•. •๑)",
+            "loveMessage": "!!!당신을 정말 좋아해요!! ( >᎑<)♡︎ᐝ {username}님, 영원히 함께 해주세요♡︎ᐝ(>᎑< )",
+            "yesButton": "예! (✿◠‿◠)",
+            "noButton": "아니요…(；へ：)",
+            "noTexts": [
+              "정말 그렇게 생각하시나요? (；ω；。)",
+              "조금 더 생각해 보시겠어요? (´・ω・｀)",
+              "이걸 선택하면 안 돼요! (╬ ಠ益ಠ)",
+              "제가 너무 슬퍼질 거에요…(T_T)",
+              "안 돼요～(>_<)"
+            ]
+        },
+        "de": {
+            "pageTitle": "Wirst du mein/e Süße/r? (✧ω✧)",
+            "greeting": "Wie soll ich dich nennen? (´• ω •`) ♡",
+            "subGreeting": "Geheim ist okay~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(PLATZHALTER)",
+            "usernamePlaceholder": "Gib deinen süßen Namen ein...",
+            "confirmButton": "Bestätigen ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "TikTok Version Chinese Mainland(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Quellcode (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ KOSTENLOSES PROJEKT! Wenn du bezahlt hast, fordere eine Rückerstattung! (╯°□°）╯",
+            "questionTemplate": "{username}? Wirst du meine/r ewige Liebe sein? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "LIEBE-EXPLOSION!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Du hast mein Herz gestohlen! (灬º‿º灬)♡",
+            "yesButton": "Ja! (✧∀✧)",
+            "noButton": "Nein... (；へ：)",
+            "noTexts": [
+              "Warten, wirklich? (⊙_⊙;)",
+              "Mein Herz bricht... (´；д；`)",
+              "Bitte überleg es dir nochmal! (ﾉ`Д´)ﾉ",
+              "Ich werde einen Fluss weinen... (T^T)",
+              "Endgültige Antwort? (눈‸눈)"
+            ]
+        },
+        "fr": {
+            "pageTitle": "Veux-tu être mon amoureux/amoureuse? (✧ω✧)",
+            "greeting": "Comment dois-je t'appeler? (´• ω •`) ♡",
+            "subGreeting": "Secret est okay~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(ESPACE)",
+            "usernamePlaceholder": "Entrez votre doux nom ici...",
+            "confirmButton": "Confirmer ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "Version TikTok de Chine continentale(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Code source (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ PROJET GRATUIT! Si vous avez payé, demandez un remboursement! (╯°□°）╯",
+            "questionTemplate": "{username}? Veux-tu être mon amour éternel? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "EXPLOSION D'AMOUR!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Tu as volé mon cœur! (灬º‿º灬)♡",
+            "yesButton": "Oui! (✧∀✧)",
+            "noButton": "Non... (；へ：)",
+            "noTexts": [
+              "Attends, vraiment? (⊙_⊙;)",
+              "Mon cœur se brise... (´；д；`)",
+              "Pensez-y à nouveau! (ﾉ`Д´)ﾉ",
+              "Je vais pleurer un fleuve... (T^T)",
+              "Réponse finale? (눈‸눈)"
+            ]
+        },
+        "id": {
+            "pageTitle": "Apakah kamu akan menjadi kekasihku? (✧ω✧)",
+            "greeting": "Seperti apakah nama manis yang harus kukatakan padamu? (´• ω •`) ♡",
+            "subGreeting": "Rahasia juga oke~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(RUANG)",
+            "usernamePlaceholder": "Tulis nama manismu di sini...",
+            "confirmButton": "Konfirmasi ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "Versi TikTok China Daratan(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Kode Sumber (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ PROYEK GRATIS! Jika kamu membayar, minta pengembalian! (╯°□°）╯",
+            "questionTemplate": "{username}? Apakah kamu akan menjadi cinta abadi saya? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "LEDakan CINTA!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Kamu mencuri hatiku! (灬º‿º灬)♡",
+            "yesButton": "Ya! (✧∀✧)",
+            "noButton": "Tidak... (；へ：)",
+            "noTexts": [
+              "Tunggu, benar? (⊙_⊙;)",
+              "Hati saya retak... (´；д；`)",
+              "Tolong pikirkan lagi! (ﾉ`Д´)ﾉ",
+              "Aku akan menangis seperti sungai... (T^T)",
+              "Jawaban akhir? (눈‸눈)"
+            ]
+        },
+        "ms": {
+            "pageTitle": "Bolehkah awak menjadi kekasihku? (✧ω✧)",
+            "greeting": "Apakah nama manis yang harus saya panggil awak? (´• ω •`) ♡",
+            "subGreeting": "Rahsia juga okay~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(RUANG)",
+            "usernamePlaceholder": "Tulis nama manis awak di sini...",
+            "confirmButton": "Sahkan ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "Versi TikTok China Daratan(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Kod Sumber (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ PROJEK PERCUMA! Jika anda membayar, mintalah pengembalian! (╯°□°）╯",
+            "questionTemplate": "{username}? Bolehkah awak menjadi cinta abadi saya? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "LETUP CINTA!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Awak mencuri hatiku! (灬º‿º灬)♡",
+            "yesButton": "Ya! (✧∀✧)",
+            "noButton": "Tidak... (；へ：)",
+            "noTexts": [
+              "Tunggu, betul? (⊙_⊙;)",
+              "Hati saya retak... (´；д；`)",
+              "Tolong fikirkan lagi! (ﾉ`Д´)ﾉ",
+              "Saya akan menangis seperti sungai... (T^T)",
+              "Jawapan akhir? (눈‸눈)"
+            ]
+        },
+        "ru": {
+            "pageTitle": "Хочешь стать моим возлюбленным/возлюбленной? (✧ω✧)",
+            "greeting": "Какое милоё имя мне вызывать тебя? (´• ω •`) ♡",
+            "subGreeting": "Тайна тоже хорошо~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(ПРОБЕЛ)",
+            "usernamePlaceholder": "Введи своё милоё имя здесь...",
+            "confirmButton": "Подтвердить ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "Версия TikTok для Китая(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Исходный Код (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ БЕСПЛАТНЫЙ ПРОЕКТ! Если ты заплатил, верни деньги! (╯°□°）╯",
+            "questionTemplate": "{username}? Хотите стать моей вечной любовью? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "ВЗРЫВ ЛЮБВИ!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Ты украл(а) моё сердце! (灬º‿º灬)♡",
+            "yesButton": "Да! (✧∀✧)",
+            "noButton": "Нет... (；へ：)",
+            "noTexts": [
+              "Подожди, правда? (⊙_⊙;)",
+              "Моё сердце ломается... (´；д；`)",
+              "Пожалуйста, подумай ещё раз! (ﾉ`Д´)ﾉ",
+              "Я заплачу реку... (T^T)",
+              "Финальный ответ? (눈‸눈)"
+            ]
+        },
+        "th": {
+            "pageTitle": "คุณจะเป็นแฟนฉันหรือไม่? (✧ω✧)",
+            "greeting": "ฉันควรเรียกคุณว่าอะไรดี? (´• ω •`) ♡",
+            "subGreeting": "保守ความลับก็ได้~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(ช่องว่าง)",
+            "usernamePlaceholder": "ใส่ชื่อรักของคุณที่นี่...",
+            "confirmButton": "ยืนยัน ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "เวอร์ชัน TikTok ประเทศจีน(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "โค้ดต้นฉบับ (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ โปรเจกต์ฟรี! หากคุณจ่ายเงิน โปรดขอคืนเงิน! (╯°□°）╯",
+            "questionTemplate": "{username}? คุณจะเป็นความรักที่ซื่อสัตย์ของฉันไหม? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "การระเบิดของความรัก!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! คุณโจรกรรมหัวใจฉัน! (灬º‿º灬)♡",
+            "yesButton": "ใช่! (✧∀✧)",
+            "noButton": "ไม่... (；へ：)",
+            "noTexts": [
+              "เดี๋ยวก่อน จริงหรือ? (⊙_⊙;)",
+              "หัวใจของฉันกำลังแตก... (´；д；`)",
+              "โปรดคิดอีกครั้ง! (ﾉ`Д´)ﾉ",
+              "ฉันจะร้องไห้... (T^T)",
+              "คำตอบสุดท้าย? (눈‸눈)"
+            ]
+        },
+        "vi": {
+            "pageTitle": "Bạn có muốn làm người yêu của tôi không? (✧ω✧)",
+            "greeting": "Tôi nên gọi bạn bằng cái tên dễ thương nào? (´• ω •`) ♡",
+            "subGreeting": "Bí mật cũng okay~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(KHỐNG CẦN)",
+            "usernamePlaceholder": "Nhập tên dễ thương của bạn ở đây...",
+            "confirmButton": "Xác nhận ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "Phiên bản TikTok Trung Quốc(๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "Mã Nguồn (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ DỰ ÁN MIỄN PHÍ! Nếu bạn đã trả tiền, yêu cầu hoàn tiền! (╯°□°）╯",
+            "questionTemplate": "{username}? Bạn có muốn làm tình yêu vĩnh cửu của tôi không? (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "BỤN NỔ YÊU THƯƠNG!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! Bạn đã đánh cắp trái tim tôi! (灬º‿º灬)♡",
+            "yesButton": "Có! (✧∀✧)",
+            "noButton": "Không... (；へ：)",
+            "noTexts": [
+              "Khoan, thực sự? (⊙_⊙;)",
+              "Trái tim tôi đang nứt... (´；д；`)",
+              "Hãy suy nghĩ lại! (ﾉ`Д´)ﾉ",
+              "Tôi sẽ khóc suốt một sông... (T^T)",
+              "Câu trả lời cuối cùng? (눈‸눈)"
+            ]
+        },
+        "ar": {
+            "pageTitle": "هل تريد أن تكون حبيبي/حبيبتي؟ (✧ω✧)",
+            "greeting": "ما هو الاسم الحلو الذي يجب أن أدعوك به؟ (´• ω •`) ♡",
+            "subGreeting": "السر هو ما يرام~ (⁄ ⁄•⁄ω⁄•⁄ ⁄)(مساحة)",
+            "usernamePlaceholder": "أدخل اسمك الحلو هنا...",
+            "confirmButton": "تأكيد ♡(˘ε˘ʃƪ)",
+            "xiaohongshuLinkText": "REDnote(≧∇≦)ﾉ",
+            "douyinLinkText": "نسخة تيك توك الصين (๑˃ᴗ˂)ﻭ",
+            "repoLinkText": "الكود المصدر (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+            "freeNotice": "ฅ•ﻌ•ฅ مشروع مجاني! إذا دفعت، اطلب استرداد! (╯°□°）╯",
+            "questionTemplate": "{username}؟ هل تريد أن تكون حبيبتي الح вечي؟ (ﾉ>ω<)ﾉ♡",
+            "loveMessage": "انفجار الحب!!! ♡⸜(˶˃ ᵕ ˂˶)⸝\n{username}! لقد سرقت قلبي! (灬º‿º灬)♡",
+            "yesButton": "نعم! (✧∀✧)",
+            "noButton": "لا... (；へ：)",
+            "noTexts": [
+              "انتظر، حقًا؟ (⊙_⊙;)",
+              "قلبي يتشقق... (´；д；`)",
+              "ارجو التفكير مرة أخرى! (ﾉ`Д´)ﾉ",
+              "سأبكي نهرًا... (T^T)",
+              "الإجابة النهائية؟ (눈‸눈)"
+            ]
+        }
+    },
 
     // 初始化语言 | Initialize language
     async init() {
@@ -14,7 +361,7 @@ const i18n = {
             await this.loadTranslations(this.currentLang);
             console.info(`(成功加载 ${this.currentLang} 语言文件) | Successfully loaded the ${this.currentLang} language file`);
         } catch (error) {
-            console.warn(`(加载 ${this.currentLang} 语言文件失败，默认加载 en.json) | Failed to load the ${this.currentLang} language file, loading en.json by default`);
+            console.warn(`(加载 ${this.currentLang} 语言文件失败，默认加载 en) | Failed to load the ${this.currentLang} language file, loading en.json by default`);
             await this.loadTranslations('en');
         }
 
@@ -25,14 +372,13 @@ const i18n = {
 
     // 加载语言文件 | Load translations
     async loadTranslations(lang) {
-        const filePath = `i18n/${lang}.json`;
-        console.info(`(尝试加载语言文件路径: ${filePath}) | Trying to load the language file from path: ${filePath}`);
+        console.info(`(尝试加载语言: ${lang}) | Trying to load language: ${lang}`);
         try {
-            const response = await fetch(filePath);
-            this.translations = await response.json();
+            // 直接从内部对象获取翻译数据，不再通过fetch加载外部文件
+            this.translations = this.allTranslations[lang] || this.allTranslations.en;
             console.info(`(成功加载语言: ${lang}) | Successfully loaded language: ${lang}`);
         } catch (error) {
-            console.error(`(解析 ${lang}.json 文件时出错: ${error.message}) | Error parsing the ${lang}.json file: ${error.message}`, error);
+            console.error(`(加载 ${lang} 语言数据时出错: ${error.message}) | Error loading ${lang} language data: ${error.message}`, error);
             throw new Error(`(加载 ${lang} 失败) | Failed to load ${lang}`);
         }
     },
@@ -75,8 +421,8 @@ const i18n = {
 async function initLanguageSwitcher() {
     console.info('(开始初始化语言选择器) | Starting to initialize the language selector');
     const select = document.getElementById('languageSelect');
-    const response = await fetch('languages.json');
-    const languages = await response.json();
+    // 直接使用i18n对象中的languages属性，不再通过fetch加载languages.json
+    const languages = i18n.languages;
     console.info('(成功获取语言列表) | Successfully retrieved the language list');
     const userPref = localStorage.getItem('userLangPreference');
     const browserLang = navigator.language || 'en';

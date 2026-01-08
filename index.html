@@ -1,47 +1,112 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-lang="zh-CN">
+<!-- 声明文档类型为 HTML5，告诉浏览器用最新的标准来解析这个网页 -->
+
+<html lang="zh-CN">
+<!-- html 标签是整个网页的根元素，lang="zh-CN" 表示这是一个简体中文网页 -->
+
 <head>
+    <!-- head 标签包含网页的元数据（metadata），这些内容不会直接显示在页面上 -->
+
     <meta charset="UTF-8">
+    <!-- 设置字符编码为 UTF-8，支持中文等各种语言字符 -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="pageTitle"></title>
+    <!-- 视口设置，让网页在手机上也能正常显示，width=device-width 表示宽度等于设备宽度 -->
+
+    <title>可以成为我的恋人吗？</title>
+    <!-- 网页标题，会显示在浏览器标签页上 -->
+
     <link rel="stylesheet" href="style.css">
-    <!-- 设置网页图标 | Set webpage icon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- 引入外部 CSS 样式文件，用来美化网页 -->
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- 设置网页图标（favicon），显示在浏览器标签页的标题前面 -->
 </head>
+
 <body>
-    <!-- 用于输入名字的容器 | Container for name input -->
-    <div id="nameInputContainer" style="display: none;">
-        <div id="sidehead-wrapper">
-            <p class="free-notice" data-i18n="freeNotice"></p>
-            <!-- 可点击链接元素 | Clickable link elements -->
-            <a href="https://www.xiaohongshu.com/user/profile/5d47ef8e000000001203de79" id="xiaohongshuLink" target="_blank" data-i18n="xiaohongshuLinkText"></a>
-            <a href="https://www.douyin.com/user/MS4wLjABAAAAe0T2npKNPtRfu3yLhwnCWtJU5Agwb6WY9g_2mnqKfZM" id="douyinLink" target="_blank" data-i18n="douyinLinkText"></a>
-            <a href="https://github.com/JayMuShui/tang-love" id="repoLink" target="_blank" data-i18n="repoLinkText"></a>
-            <img id="sidehead" src="assets/images/sidehead.webp" alt="Side head">           
-        </div>
-        <h1 id="greeting" data-i18n="greeting"></h1>
-        <p id="subGreeting" data-i18n="subGreeting"></p>
-        <input type="text" id="usernameInput" data-i18n-placeholder="usernamePlaceholder">
-        
-        <!-- 操作行 | Action Row -->
-        <div class="action-row">
-            <button id="confirmNameButton" data-i18n="confirmButton"></button>
-            <select id="languageSelect" class="styled-select"></select>
+    <!-- body 标签包含网页的主体内容，这里的内容会显示在浏览器窗口中 -->
+
+    <!-- ==================== 第一个页面：输入名字页面 ==================== -->
+    <div id="nameInput" class="container" style="display: none;">
+        <!-- div 是一个容器标签，用来组织和包裹其他元素 -->
+        <!-- id="nameInput" 给这个 div 一个唯一的标识符，方便 JavaScript 操作 -->
+        <!-- class="container" 给这个 div 一个类名，用于应用通用的容器样式 -->
+        <!-- style="display: none;" 是内联样式，让这个页面初始时隐藏（不显示） -->
+
+        <p class="notice">ฅ•ω•ฅ 这是完全免费的项目哦！如果你花钱了，快去找坏蛋退款！</p>
+        <!-- p 标签表示段落（paragraph） -->
+        <!-- class="notice" 给这个段落一个类名，可以在 CSS 中统一设置样式 -->
+
+        <p class="links">
+            <!-- 这个段落包含三个社交媒体链接 -->
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAe0T2npKNPtRfu3yLhwnCWtJU5Agwb6WY9g_2mnqKfZM"
+                target="_blank">抖音</a> |
+            <!-- a 标签是超链接，href 属性指定链接地址 -->
+            <!-- target="_blank" 表示在新标签页中打开链接 -->
+            <!-- | 是分隔符，用来分隔不同的链接 -->
+
+            <a href="https://www.xiaohongshu.com/user/profile/5d47ef8e000000001203de79" target="_blank">小红书</a> |
+            <a href="https://github.com/JayMuShui/tang-love" target="_blank">Github</a>
+        </p>
+
+        <img src="assets/images/sidehead.webp" alt="侧头">
+        <!-- img 标签用来显示图片 -->
+        <!-- src 属性指定图片的路径 -->
+        <!-- alt 属性是图片的替代文本，当图片加载失败时显示，也有助于无障碍访问 -->
+
+        <h1>你希望我怎么称呼你呢？<span>(*>﹏<*)′</span>
+        </h1>
+        <!-- h1 是一级标题，字体最大最重要 -->
+        <!-- span 是行内元素，用来包裹一小段文字，方便单独设置样式 -->
+
+        <p>不想告诉我的话也可以留空哦</p>
+        <!-- 提示文字 -->
+
+        <input type="text" id="username" placeholder="在这里请输入你的名字~">
+        <!-- input 是输入框，type="text" 表示这是一个文本输入框 -->
+        <!-- id="username" 给输入框一个唯一标识，方便 JavaScript 获取用户输入的内容 -->
+        <!-- placeholder 是占位符文本，当输入框为空时显示的提示文字 -->
+
+        <button id="confirm">是这个名字呢</button>
+        <!-- button 是按钮，id="confirm" 方便 JavaScript 监听点击事件 -->
+    </div>
+
+    <!-- ==================== 第二个页面：表白页面 ==================== -->
+    <div id="confession" class="container" style="display: none;">
+        <!-- 表白页面容器，初始也是隐藏的 -->
+        <!-- class="container" 应用通用的容器样式 -->
+
+        <img id="mainImage" src="assets/images/heart.webp" alt="爱心">
+        <!-- 主图片，id="mainImage" 方便 JavaScript 动态更换图片 -->
+
+        <h1 id="question">可以成为我的恋人吗？</h1>
+        <!-- 表白问题，id="question" 方便 JavaScript 动态修改文字（加上用户名） -->
+
+        <div>
+            <!-- 用一个 div 包裹两个按钮，方便布局 -->
+            <button id="yes">可以</button>
+            <!-- "可以"按钮，点击后进入成功页面 -->
+
+            <button id="no">不要</button>
+            <!-- "不要"按钮，点击后会触发有趣的挤压效果 -->
         </div>
     </div>
 
-    <!-- 表白内容容器 | Confession content container -->
-    <div class="container" id="confessionContainer" style="display: none;">
-        <div class="animation-wrapper">
-        <div class="content-group">
-        <img id="mainImage" src="assets/images/heart.webp" alt="Love">
-        <h1 id="question" data-i18n="questionTemplate"></h1>
-        <div class="buttons">
-            <button id="yes" data-i18n="yesButton"></button>
-            <button id="no" data-i18n="noButton"></button>
-        </div>
+    <!-- ==================== 第三个页面：表白成功页面 ==================== -->
+    <div id="success" style="display: none;">
+        <!-- 成功页面容器，初始也是隐藏的 -->
+
+        <h1 id="successText"></h1>
+        <!-- 成功文字，id="successText" 方便 JavaScript 动态设置内容 -->
+        <!-- 注意这里是空的，内容会由 JavaScript 动态填充 -->
+
+        <img src="assets/images/hug.webp" alt="拥抱">
+        <!-- 拥抱图片，表示表白成功 -->
     </div>
+
     <script src="script.js"></script>
+    <!-- 引入外部 JavaScript 文件，用来实现网页的交互功能 -->
+    <!-- 放在 body 结束标签前，确保 HTML 元素都加载完成后再执行 JavaScript -->
 </body>
+
 </html>

@@ -1,426 +1,400 @@
-/* 引入自定义字体Lolita */
-@font-face {
-    font-family: 'Lolita';
-    src: url('assets/fonts/Lolita.woff2') format('woff2'),
-         url('assets/fonts/Lolita.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+/* ==================== CSS 基础知识 ====================
+ * CSS（Cascading Style Sheets，层叠样式表）用来美化网页
+ * 基本语法：选择器 { 属性: 值; }
+ * 选择器用来选中 HTML 元素，然后设置它们的样式
+ */
 
-/* 全局样式 */
+/* ==================== body 全局样式 ==================== */
 body {
+    /* body 是整个网页的主体 */
+    
     background-color: #f1d5da;
+    /* 背景颜色，#f1d5da 是粉色的十六进制颜色代码 */
+    
     text-align: center;
-    font-family: 'Lolita', Arial, sans-serif;
+    /* 文字居中对齐 */
+    
+    font-family: Arial, sans-serif;
+    /* 字体设置，优先使用 Arial，如果没有就用系统默认的无衬线字体 */
+    
     margin: 0;
     padding: 0;
+    /* margin 是外边距，padding 是内边距，设为 0 去掉浏览器默认的空白 */
+    
     display: flex;
+    /* 使用 Flexbox 布局，这是一种强大的布局方式 */
+    
     justify-content: center;
+    /* Flexbox 属性：水平方向居中 */
+    
     align-items: center;
+    /* Flexbox 属性：垂直方向居中 */
+    
     height: 100vh;
+    /* 高度设为 100vh，vh 是视口高度单位，100vh = 浏览器窗口的 100% 高度 */
 }
 
-/* 输入名字容器样式 */
-#nameInputContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    max-width: 500px;
-}
-
-/* 侧头图片及链接容器样式 */
-#sidehead-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 免费声明样式 */
-.free-notice {
-    font-size: 1.5vw;
-    color: #ff6b6b;
-    margin: 10px 0;
-    padding: 8px;
-    background: #fff0f0;
-    border-radius: 15px;
-    animation: bounce 1s infinite alternate;
-}
-
-/* 免费声明动画关键帧 */
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-3px);
-    }
-}
-
-/* 小红书、抖音、GitHub 链接样式 */
-#xiaohongshuLink,
-#douyinLink,
-#repoLink {
-    font-size: 2vw;
-    color: #68495b;
-    text-decoration: none;
-    margin-top: 5px;
-}
-
-/* 标题样式 */
-h1 {
-    font-size: 3.5vw;
-    color: #68495b;
-    margin: 20px 0;
-    word-wrap: break-word;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* 输入框样式 */
-input[type="text"] {
-    font-family: 'Lolita', Arial, sans-serif;
-    font-size: 3.5vw;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    width: 90%;
-    box-sizing: border-box;
-    word-wrap: break-word;
-}
-
-/* 输入框获得焦点样式 */
-input[type="text"]:focus {
-    outline: 2px solid #d4818e;
-    outline-offset: 2px;
-}
-
-/* 操作行样式 */
-.action-row {
-    display: flex;
-    justify-content: space-between; /* 确保按钮左右对半分 */
-    align-items: center;
-    width: 100%;
-}
-
-/* 确认按钮和语言选择器通用样式 */
-#confirmNameButton,
-#languageSelect.styled-select {
-    flex: 1;
-    width: 48%; /* 确保按钮宽度为 50% */
-    font-family: 'Lolita', Arial, sans-serif;
-    font-size: 4vw; /* 使用 vw 单位使字体自适应 */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 10px 1%;
-    background-color: #a581d4;
-    color: white;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* 确认按钮和语言选择器激活（点击）样式 */
-#confirmNameButton:active,
-#languageSelect.styled-select:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* 确认按钮和语言选择器获得焦点样式 */
-#confirmNameButton:focus,
-#languageSelect.styled-select:focus {
-    outline: 2px solid #d4818e;
-    outline-offset: 2px;
-}
-
-/* 语言选择器自定义下拉箭头 */
-#languageSelect.styled-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10L12 15L17 10H7Z" fill="white"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 12px;
-    padding-right: 45px;
-}
-
-/* 语言选择器选项样式 */
-#languageSelect.styled-select option {
-    background: #f1d5da;
-    color: #68495b;
-    font-family: 'Lolita', Arial, sans-serif;
-}
-
-/* 表白内容容器样式 */
+/* ==================== 通用容器样式 ==================== */
 .container {
+    /* . 表示类选择器，选中所有 class="container" 的元素 */
+    /* 使用类选择器的好处：
+     * 1. 可以复用：多个元素可以使用同一个类
+     * 2. 语义清晰：container 表示这是一个容器
+     * 3. 优先级适中：比 id 选择器优先级低，更灵活
+     */
+    
     width: 90%;
+    /* 宽度为父元素的 90% */
+    
     max-width: 500px;
+    /* 最大宽度 500px，防止在大屏幕上过宽 */
 }
 
-/* 主图片样式 */
-#mainImage {
+/* ==================== 图片样式 ==================== */
+img {
+    /* 这是元素选择器，选中所有的 img 标签 */
+    
     width: 100%;
+    /* 宽度为父元素的 100% */
+    
     max-width: 200px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* 最大宽度 200px，防止图片过大 */
+    
+    transition: all 0.3s ease;
+    /* 过渡动画：所有属性变化时，用 0.3 秒平滑过渡，ease 是缓动效果 */
+    /* 这样当图片位置或大小改变时，会有平滑的动画效果 */
 }
 
-/* 问题文本样式 */
-#question {
-    font-size: 3.5vw;
+/* ==================== 标题样式 ==================== */
+h1 {
+    /* 选中所有的 h1 标题 */
+    
+    font-size: 5vw;
+    /* 字体大小为视口宽度的 5%，vw 是视口宽度单位 */
+    /* 这样在不同屏幕上，字体大小会自动调整 */
+    
     color: #68495b;
+    /* 文字颜色，深紫色 */
+    
     margin: 20px 0;
-    word-wrap: break-word;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* 上下外边距 20px，左右为 0 */
 }
 
-/* 按钮容器样式 */
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+h1 span {
+    /* 选中 h1 标题内的 span 元素 */
+    
+    font-size: 0.6em;
+    /* em 是相对单位，0.6em 表示父元素字体大小的 60% */
 }
 
-/* “可以”按钮样式 */
+/* ==================== 段落样式 ==================== */
+p {
+    /* 选中所有的段落 */
+    
+    font-size: 3vw;
+    /* 字体大小为视口宽度的 3% */
+    
+    color: #68495b;
+    /* 文字颜色 */
+    
+    margin: 10px 0;
+    /* 上下外边距 10px */
+}
+
+/* ==================== 输入框样式 ==================== */
+input {
+    /* 选中所有的输入框 */
+    
+    font-size: 4vw;
+    /* 字体大小 */
+    
+    padding: 10px;
+    /* 内边距，让输入框内的文字不贴边 */
+    
+    border: 1px solid #ccc;
+    /* 边框：1px 宽，实线，浅灰色 */
+    
+    border-radius: 5px;
+    /* 圆角半径 5px，让输入框有圆角效果 */
+    
+    margin: 10px 0;
+    /* 上下外边距 */
+    
+    width: 80%;
+    /* 宽度为父元素的 80% */
+    
+    box-sizing: border-box;
+    /* 盒模型设置：宽度包含 padding 和 border */
+    /* 这样设置 width 时，不会因为 padding 而超出预期宽度 */
+}
+
+/* ==================== 按钮通用样式 ==================== */
+button {
+    /* 选中所有的按钮 */
+    
+    font-size: 4vw;
+    /* 字体大小 */
+    
+    padding: 10px 20px;
+    /* 内边距：上下 10px，左右 20px */
+    
+    border: none;
+    /* 去掉默认边框 */
+    
+    border-radius: 5px;
+    /* 圆角 */
+    
+    cursor: pointer;
+    /* 鼠标悬停时显示手型光标，表示可以点击 */
+    
+    margin: 10px;
+    /* 四周外边距 10px */
+    
+    transition: all 0.3s ease;
+    /* 过渡动画，让按钮变化更平滑 */
+}
+
+/* ==================== 特定按钮样式 ==================== */
 #yes {
+    /* 选中 id 为 yes 的按钮（"可以"按钮） */
+    
     background-color: #d4818e;
+    /* 背景颜色：粉红色 */
+    
     color: white;
-    font-family: 'Lolita', Arial, sans-serif;
-    font-size: 4vw;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 10px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* 文字颜色：白色 */
 }
 
-/* “可以”按钮激活（点击）样式 */
-#yes:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* “可以”按钮获得焦点样式 */
-#yes:focus {
-    outline: 2px solid #d4818e;
-    outline-offset: 2px;
-}
-
-/* “不要”按钮样式 */
 #no {
+    /* 选中 id 为 no 的按钮（"不要"按钮） */
+    
     background-color: #6784b1;
+    /* 背景颜色：蓝色 */
+    
     color: white;
-    font-family: 'Lolita', Arial, sans-serif;
-    font-size: 4vw;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 10px;
+    /* 文字颜色：白色 */
+    
     position: relative;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* 定位方式：相对定位，为后续的 transform 做准备 */
+    /* relative 表示元素相对于自己原来的位置进行定位 */
 }
 
-/* “不要”按钮激活（点击）样式 */
-#no:active {
-    transform: scale(0.95);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+#confirm {
+    /* 选中 id 为 confirm 的按钮（确认按钮） */
+    
+    background-color: #a581d4;
+    /* 背景颜色：紫色 */
+    
+    color: white;
+    /* 文字颜色：白色 */
 }
 
-/* “不要”按钮获得焦点样式 */
-#no:focus {
-    outline: 2px solid #d4818e;
-    outline-offset: 2px;
+/* ==================== 链接样式 ==================== */
+.links a {
+    /* .links 是类选择器，选中 class="links" 的元素 */
+    /* .links a 表示选中 .links 内的所有 a 标签（后代选择器） */
+    
+    color: #68495b;
+    /* 链接颜色 */
+    
+    text-decoration: none;
+    /* 去掉下划线 */
+    
+    font-size: 3vw;
+    /* 字体大小 */
 }
 
-/* 表白成功页面样式 */
-.yes-screen {
+.links a:hover {
+    /* :hover 是伪类选择器，表示鼠标悬停时的状态 */
+    
+    text-decoration: underline;
+    /* 鼠标悬停时显示下划线 */
+}
+
+/* ==================== 免费声明样式 ==================== */
+.notice {
+    /* 选中 class="notice" 的元素 */
+    
+    color: #ff6b6b;
+    /* 文字颜色：红色 */
+    
+    background: #fff0f0;
+    /* 背景颜色：浅粉色 */
+    
+    padding: 8px;
+    /* 内边距 */
+    
+    border-radius: 10px;
+    /* 圆角 */
+    
+    font-size: 3vw;
+    /* 字体大小 */
+    
+    animation: bounce 1s infinite alternate;
+    /* 动画设置：
+     * bounce 是动画名称（在下面定义）
+     * 1s 是动画持续时间
+     * infinite 表示无限循环
+     * alternate 表示动画来回播放（上下弹跳效果）
+     */
+}
+
+/* ==================== 弹跳动画定义 ==================== */
+@keyframes bounce {
+    /* @keyframes 用来定义动画的关键帧 */
+    
+    from {
+        /* 动画开始时的状态 */
+        transform: translateY(0);
+        /* translateY(0) 表示垂直方向不移动 */
+    }
+    
+    to {
+        /* 动画结束时的状态 */
+        transform: translateY(-3px);
+        /* translateY(-3px) 表示向上移动 3px */
+    }
+    
+    /* 因为设置了 alternate，动画会在 from 和 to 之间来回播放 */
+    /* 形成上下弹跳的效果 */
+}
+
+/* ==================== 表白成功页面样式 ==================== */
+#success {
+    /* 选中 id 为 success 的元素（成功页面） */
+    
     position: fixed;
+    /* 固定定位：元素相对于浏览器窗口固定 */
+    /* 即使页面滚动，元素也会保持在固定位置 */
+    
     top: 0;
     left: 0;
+    /* 定位到左上角 */
+    
     width: 100vw;
     height: 100vh;
+    /* 宽度和高度都是视口的 100%，铺满整个屏幕 */
+    
     background-color: #ffdae0;
-    display: flex;
+    /* 背景颜色：浅粉色 */
+    
+    display: none;
+    /* 初始隐藏，JavaScript 会在需要时改为 flex */
+    
     flex-direction: column;
+    /* Flexbox 方向：垂直排列（从上到下） */
+    
     align-items: center;
+    /* 水平居中 */
+    
     justify-content: center;
-    opacity: 0;
+    /* 垂直居中 */
 }
 
-/* 表白成功文字样式 */
-.yes-text {
-    font-family: 'Lolita', Arial, sans-serif;
+#success h1 {
+    /* 选中成功页面内的 h1 标题 */
+    
     font-size: 7vw;
+    /* 字体大小更大，突出显示 */
 }
 
-/* 表白成功图片样式 */
-.yes-image {
+#success img {
+    /* 选中成功页面内的图片 */
+    
     width: 50%;
+    /* 宽度为父元素的 50% */
+    
     max-width: 300px;
+    /* 最大宽度 300px */
 }
 
-/* 从下往上冒出和渐显动画关键帧 */
-@keyframes slideUpFadeIn {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* 触发从下往上冒出和渐显动画的类名 */
-.slide-up-fade-in {
-    animation: slideUpFadeIn 0.5s ease-out both;
-}
-
-/* 慢慢浮现动画关键帧 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* 触发慢慢浮现动画的类名 */
-.fade-in {
-    animation: fadeIn 1s ease-out both;
-}
-
-/* 电脑端样式优化 */
+/* ==================== 响应式设计：电脑端样式 ==================== */
 @media (min-width: 768px) {
+    /* @media 是媒体查询，用来根据屏幕大小应用不同的样式 */
+    /* (min-width: 768px) 表示当屏幕宽度 >= 768px 时应用以下样式 */
+    /* 768px 通常是平板和电脑的分界点 */
+    
     body {
-        display: flex;
+        display: block;
+        /* 在大屏幕上，body 不使用 flex 布局 */
     }
+
     .container {
+        /* 使用类选择器，选中所有 class="container" 的元素 */
+        /* 输入页面和表白页面在大屏幕上的样式 */
+        
         position: absolute;
+        /* 绝对定位：相对于最近的已定位祖先元素定位 */
+        
         top: 50%;
         left: 50%;
+        /* 定位到中心点 */
+        
         transform: translate(-50%, -50%);
+        /* 平移变换：向左和向上移动自身宽高的 50% */
+        /* 这样可以实现真正的居中（不仅仅是左上角在中心） */
+        
         width: auto;
-        max-width: none;
+        /* 宽度自动，不再限制为 90% */
     }
-    #mainImage {
+
+    /* 在大屏幕上，使用固定的像素值而不是 vw */
+    /* 因为大屏幕上 vw 会让字体过大 */
+    
+    img {
         width: 200px;
+        /* 图片固定宽度 */
     }
+
     h1 {
-        font-size: 20px;
-        margin: 20px 0;
+        font-size: 28px;
+        /* 标题固定字体大小 */
     }
-    #confirmNameButton,
-    #languageSelect.styled-select {
+
+    p {
+        font-size: 16px;
+        /* 段落固定字体大小 */
+    }
+
+    input {
+        font-size: 16px;
+        width: 300px;
+        /* 输入框固定大小 */
+    }
+
+    button {
         font-size: 18px;
+        /* 按钮固定字体大小 */
     }
-    #languageSelect.styled-select {
-        padding: 10px 40px 10px 15px;
-        background-position: right 12px center;
+
+    .links a {
+        font-size: 16px;
+        /* 链接固定字体大小 */
     }
-    .yes-text {
+
+    .notice {
+        font-size: 16px;
+        /* 声明固定字体大小 */
+    }
+
+    #success h1 {
         font-size: 36px;
+        /* 成功页面标题固定字体大小 */
     }
-    .yes-image {
+
+    #success img {
         width: 300px;
-    }
-    input[type="text"] {
-        font-size: 16px;
-        width: 300px;
-    }
-    #nameInputContainer {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    #sidehead {
-        width: 200px;
-    }
-    #xiaohongshuLink,
-    #douyinLink,
-    #repoLink {
-        font-size: 16px;
-        margin-top: 10px;
+        /* 成功页面图片固定宽度 */
     }
 }
 
-/* 移动端优先样式优化 */
-@media (max-width: 767px) {
-    body {
-        height: auto;
-        min-height: 100vh;
-        padding: 15px;
-    }
-    #nameInputContainer {
-        width: 95%;
-        transform: none;
-        position: relative;
-        top: auto;
-        left: auto;
-    }
-    h1 {
-        font-size: 6vw !important;
-        margin: 10px 0;
-    }
-    .free-notice {
-        font-size: 14px;
-        margin: 5px 0;
-        padding: 6px;
-    }
-    #confirmNameButton,
-    #languageSelect.styled-select {
-        font-size: 5.5vw;
-        padding: 8px 15px;
-        margin: 5px;
-        min-width: 45%; /* 确保按钮在移动端不会被挤压 */
-    }
-    input[type="text"] {
-        font-size: 16px;
-        width: 85%;
-    }
-    #xiaohongshuLink,
-    #douyinLink,
-    #repoLink {
-        font-size: 14px;
-        margin-top: 3px;
-    }
-    #mainImage,
-    #sidehead {
-        max-width: 150px;
-    }
-    .yes-text {
-        font-size: 8vw;
-        padding: 0 10px;
-    }
-}
-
-/* 超小屏适配 (iPhone SE等) */
-@media (max-width: 320px) {
-    h1 {
-        font-size: 20px !important;
-    }
-    #confirmNameButton,
-    #languageSelect.styled-select {
-        font-size: 18px;
-    }
-    .free-notice {
-        font-size: 12px;
-    }
-}
-
-/* 横向手机适配 */
-@media (max-height: 500px) and (orientation: landscape) {
-    #nameInputContainer {
-        transform: scale(0.85);
-        padding-top: 5px;
-    }
-    #sidehead {
-        max-width: 100px;
-    }
-}
+/* ==================== 总结 ====================
+ * 这个 CSS 文件使用了以下重要概念：
+ * 1. 选择器：元素选择器、id 选择器（#）、类选择器（.）
+ * 2. 盒模型：margin（外边距）、padding（内边距）、border（边框）
+ * 3. Flexbox 布局：用于居中和排列元素
+ * 4. 定位：relative（相对定位）、absolute（绝对定位）、fixed（固定定位）
+ * 5. 过渡和动画：transition（过渡）、@keyframes（关键帧动画）
+ * 6. 响应式设计：@media 媒体查询，根据屏幕大小调整样式
+ * 7. 单位：px（像素）、%（百分比）、vw/vh（视口单位）、em（相对单位）
+ */
